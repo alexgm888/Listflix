@@ -15,7 +15,7 @@ interface Props {
 /** Botón "Añadir" con selector del estado inicial (por defecto, Pendiente). */
 export function AddToLibrary({ input, saved, compact }: Props) {
   const { t } = useTranslation();
-  const { metadataLanguage } = useSettings();
+  const { metadataLanguage, country } = useSettings();
   const [status, setStatus] = useState<WatchStatus>('pending');
   const [busy, setBusy] = useState(false);
 
@@ -30,7 +30,7 @@ export function AddToLibrary({ input, saved, compact }: Props) {
   const onAdd = async () => {
     setBusy(true);
     try {
-      await addToLibrary(input, status, metadataLanguage, metadataProvider);
+      await addToLibrary(input, status, { language: metadataLanguage, country }, metadataProvider);
     } finally {
       setBusy(false);
     }

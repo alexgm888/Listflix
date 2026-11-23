@@ -15,6 +15,7 @@ import { formatRating, formatRuntime } from '../../lib/format';
 import { tmdbImage } from '../../lib/images';
 import { ItemListsEditor } from '../lists/ItemListsEditor';
 import { EpisodesSection } from './EpisodesSection';
+import { WhereToWatch } from './WhereToWatch';
 import { needsEpisodeSync, refreshItem } from '../../sync/metadata-sync';
 
 export function TitlePage() {
@@ -136,6 +137,19 @@ export function TitlePage() {
           </div>
         </div>
       </header>
+
+      {item !== null && (
+        <WhereToWatch
+          item={{
+            key,
+            mediaType,
+            tmdbId,
+            title: d.title,
+            originalTitle: d.originalTitle,
+          }}
+          saved={item !== undefined}
+        />
+      )}
 
       {item && item.mediaType === 'tv' && <EpisodesSection seriesKey={key} />}
 

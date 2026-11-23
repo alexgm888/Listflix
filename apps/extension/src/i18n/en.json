@@ -36,10 +36,25 @@
     "generic": "Something went wrong. Please try again."
   },
   "about": {
-    "tmdbNotice": "This product uses the TMDB API but is not endorsed or certified by TMDB."
+    "tmdbNotice": "This product uses the TMDB API but is not endorsed or certified by TMDB.",
+    "title": "About",
+    "description": "your personal movie and TV library.",
+    "privacy": "Your data is stored only in this browser. Listflix has no accounts or analytics: the proxy server only receives TMDB queries (searched titles and IDs), with no data that identifies you.",
+    "trademarks": "Platform names and logos belong to their owners and are shown for information only."
   },
   "watch": {
-    "justwatch": "Availability data provided by"
+    "justwatch": "Availability data provided by",
+    "title": "Where to watch ({{country}})",
+    "none": "Not available on any platform in your country.",
+    "changeCountry": "Change country",
+    "type_flatrate": "Subscription",
+    "type_free": "Free",
+    "type_ads": "Free with ads",
+    "type_rent": "Rent",
+    "type_buy": "Buy",
+    "watchOn": "Watch on {{provider}}",
+    "subscribed": "Subscribed",
+    "searchNotice": "The buttons open a search for the title on each platform."
   },
   "status": {
     "pending": "Pending",
@@ -141,5 +156,19 @@
     "emptyList": "This list is empty",
     "emptyListHint": "Add titles from their detail page.",
     "openInLibrary": "Open in library with filters"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "uiLanguage": "Interface language",
+    "metadataLanguage": "Metadata language (titles and overviews)",
+    "metadataRefreshNote": "When the metadata language changes, saved titles are refreshed in the background.",
+    "country": "Country",
+    "countryHint": "Country for platform availability",
+    "myProviders": "My platforms",
+    "myProvidersHint": "Select the platforms you subscribe to, to highlight and filter by them."
+  },
+  "backup": {
+    "title": "Backup"
   }
 }

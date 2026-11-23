@@ -36,10 +36,25 @@
     "generic": "Algo ha fallado. Vuelve a intentarlo."
   },
   "about": {
-    "tmdbNotice": "Este producto usa la API de TMDB, pero TMDB no lo respalda ni lo certifica."
+    "tmdbNotice": "Este producto usa la API de TMDB, pero TMDB no lo respalda ni lo certifica.",
+    "title": "Acerca de",
+    "description": "tu biblioteca personal de películas y series.",
+    "privacy": "Tus datos se guardan solo en este navegador. Listflix no tiene cuentas ni analítica: el servidor intermedio solo recibe las consultas a TMDB (títulos buscados e identificadores), sin datos que te identifiquen.",
+    "trademarks": "Los nombres y logotipos de las plataformas pertenecen a sus propietarios y se muestran solo con fines informativos."
   },
   "watch": {
-    "justwatch": "Datos de disponibilidad proporcionados por"
+    "justwatch": "Datos de disponibilidad proporcionados por",
+    "title": "Dónde verlo ({{country}})",
+    "none": "No está disponible en ninguna plataforma en tu país.",
+    "changeCountry": "Cambiar país",
+    "type_flatrate": "Suscripción",
+    "type_free": "Gratis",
+    "type_ads": "Gratis con anuncios",
+    "type_rent": "Alquiler",
+    "type_buy": "Compra",
+    "watchOn": "Ver en {{provider}}",
+    "subscribed": "Contratada",
+    "searchNotice": "Los botones abren la búsqueda del título en cada plataforma."
   },
   "status": {
     "pending": "Pendiente",
@@ -141,5 +156,19 @@
     "emptyList": "Esta lista está vacía",
     "emptyListHint": "Añade títulos desde su ficha.",
     "openInLibrary": "Ver en la biblioteca con filtros"
+  },
+  "settings": {
+    "title": "Ajustes",
+    "language": "Idioma",
+    "uiLanguage": "Idioma de la interfaz",
+    "metadataLanguage": "Idioma de los metadatos (títulos y sinopsis)",
+    "metadataRefreshNote": "Al cambiar el idioma de los metadatos, los títulos guardados se actualizan en segundo plano.",
+    "country": "País",
+    "countryHint": "País para la disponibilidad en plataformas",
+    "myProviders": "Mis plataformas",
+    "myProvidersHint": "Marca las plataformas que tienes contratadas para destacarlas y filtrar por ellas."
+  },
+  "backup": {
+    "title": "Copia de seguridad"
   }
 }

@@ -68,3 +68,43 @@ Registro de decisiones que concretan o corrigen la especificación (`docs/especi
   mano (si no, los episodios lo devolverían a "Pendiente").
 - **Revincular un archivo** al mismo destino (película o episodio) reutiliza el registro de
   `LocalMedia`. El progreso solo se conserva si coinciden el nombre y el tamaño del archivo.
+
+## Dónde verlo (M7)
+
+- **Filtro por plataforma:** un título cuenta como disponible en una plataforma si aparece en
+  **suscripción, gratis o con anuncios**. El alquiler y la compra no cuentan. Las opciones del
+  filtro son las plataformas presentes en la caché de los títulos de la biblioteca, con las
+  contratadas primero; el atajo "Mis plataformas" selecciona las contratadas a la vez.
+- **Caché de plataformas:** solo se guarda en IndexedDB para los títulos de la biblioteca (se
+  borra en cascada al quitar el título). En la ficha de un título no guardado se consultan en
+  vivo, sin guardarlas.
+- **Título de búsqueda:** el de los detalles en el idioma de metadatos actual. Hay una opción por
+  plataforma (`useOriginalTitle`) para usar el título original; de momento solo la tiene
+  Crunchyroll.
+- **URLs de búsqueda pendientes de verificar.** Desde el entorno de desarrollo no había acceso a
+  las webs de las plataformas ni a TMDB, así que **ninguna** entrada del mapa
+  (`src/providers/watch-links/search-urls.ts`) está verificada (`verified: false`). Antes de
+  publicar, hay que comprobar a mano cada ID con `GET /watch/providers/movie?watch_region=ES` y
+  cada URL en el navegador:
+
+  | ID TMDB | Plataforma | Plantilla |
+  |---|---|---|
+  | 8, 1796 | Netflix | `https://www.netflix.com/search?q={q}` |
+  | 119, 9, 10, 2100 | Prime Video / Amazon Video | `https://www.primevideo.com/search?phrase={q}` |
+  | 337 | Disney+ | `https://www.disneyplus.com/search?q={q}` |
+  | 1899, 384 | HBO Max | `https://play.hbomax.com/search?q={q}` |
+  | 350, 2 | Apple TV+ / Apple TV | `https://tv.apple.com/search?term={q}` |
+  | 149 | Movistar Plus+ | `https://www.movistarplus.es/buscar?q={q}` |
+  | 63 | Filmin | `https://www.filmin.es/buscador?q={q}` |
+  | 1773 | SkyShowtime | `https://www.skyshowtime.com/es/search?q={q}` |
+  | 35 | Rakuten TV | `https://www.rakuten.tv/es/search?q={q}` |
+  | 3 | Google Play Películas | `https://play.google.com/store/search?q={q}&c=movies` |
+  | 192 | YouTube | `https://www.youtube.com/results?search_query={q}` |
+  | 283 | Crunchyroll | `https://www.crunchyroll.com/search?q={q}` |
+  | 531 | Paramount+ | `https://www.paramountplus.com/search/?q={q}` |
+
+  Si una URL no funciona, basta con quitarla del mapa: se usará el respaldo (enlace "dónde ver"
+  de TMDB).
+- **Logo de TMDB:** por la misma falta de acceso, la atribución usa de momento el texto "TMDB"
+  con los colores de la marca. Antes de publicar hay que poner el logo oficial
+  (`TmdbAttribution.tsx`).

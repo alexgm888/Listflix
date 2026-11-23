@@ -1,3 +1,4 @@
+import { ProviderLogo } from '../../components/ProviderLogo';
 import { useTranslation } from 'react-i18next';
 import { useGenres } from '../../app/hooks';
 import {
@@ -7,7 +8,6 @@ import {
   type UserList,
   type WatchProvidersByType,
 } from '../../domain/types';
-import { tmdbImage } from '../../lib/images';
 import { DEFAULT_FILTERS, toggleInArray, type LibraryFilters } from './filter';
 
 interface Props {
@@ -131,9 +131,7 @@ export function FilterPanel({
               pressed={filters.providerIds.includes(p.providerId)}
               onClick={() => set({ providerIds: toggleInArray(filters.providerIds, p.providerId) })}
             >
-              {p.logoPath && (
-                <img src={tmdbImage(p.logoPath, 'w45')} alt="" className="h-4 w-4 rounded-sm" />
-              )}
+              <ProviderLogo path={p.logoPath} className="h-4 w-4" />
               {p.providerName}
               {mine.has(p.providerId) && <span aria-label={t('filters.subscribed')}>★</span>}
             </Chip>

@@ -82,3 +82,11 @@ biblioteca filtra por lista.
 Temporadas y episodios en la ficha, con marca de visto por episodio o por temporada completa,
 bloque "Continuar" con el siguiente episodio y estado global calculado (o fijado a mano, con
 opción de volver a "Automático").
+
+### Dónde verlo (M7)
+
+Plataformas de suscripción, gratis, con anuncios, alquiler y compra según el país configurado,
+con botón "Ver en …" que abre la búsqueda en esa plataforma (o la página de TMDB como respaldo).
+Filtro por plataforma en la biblioteca, plataformas contratadas en Ajustes y atribuciones a TMDB
+y JustWatch. **Las URLs de búsqueda están pendientes de verificar**: ver
+[`docs/decisiones.md`](docs/decisiones.md).
