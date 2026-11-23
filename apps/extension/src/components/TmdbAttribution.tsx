@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 export function TmdbAttribution({ compact = false }: { compact?: boolean }) {
   const { t } = useTranslation();
   return (
-    <p className={`flex items-center gap-2 text-neutral-500 ${compact ? 'text-xs' : 'text-sm'}`}>
+    <p className={`flex items-center gap-2 text-neutral-400 ${compact ? 'text-xs' : 'text-sm'}`}>
       <a
         href="https://www.themoviedb.org"
         target="_blank"
@@ -25,7 +25,7 @@ export function TmdbAttribution({ compact = false }: { compact?: boolean }) {
 export function JustWatchAttribution() {
   const { t } = useTranslation();
   return (
-    <p className="text-xs text-neutral-500">
+    <p className="text-xs text-neutral-400">
       {t('watch.justwatch')}{' '}
       <a
         href="https://www.justwatch.com"

@@ -224,7 +224,8 @@
     "chooseMatch": "Which title is it?",
     "bestMatch": "best match",
     "willLink": "The file will be linked to “{{title}}”.",
-    "willAdd": "It will also be added to your library."
+    "willAdd": "It will also be added to your library.",
+    "videoFiles": "Video"
   },
   "player": {
     "backToTitle": "Back to title",
@@ -250,6 +251,7 @@
     "offsetValue": "{{value}} s",
     "size": "Size",
     "background": "Background",
-    "halfSecond": "0.5 s"
+    "halfSecond": "0.5 s",
+    "subtitleFiles": "Subtitles"
   }
 }

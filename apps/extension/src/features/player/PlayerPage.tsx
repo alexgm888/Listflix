@@ -216,7 +216,7 @@ export function PlayerPage() {
   // 4. Controles de subtítulos.
   const onPickSubtitle = async () => {
     if (!ctx) return;
-    const handle = await pickSubtitleFile();
+    const handle = await pickSubtitleFile(t('player.subtitleFiles'));
     if (!handle) return;
     const ref: SubtitleRef = {
       handle,

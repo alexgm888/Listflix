@@ -1,4 +1,4 @@
-import { useEffect, useState, type FormEvent } from 'react';
+import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, NavLink, Outlet, useLocation, useNavigate, useSearchParams } from 'react-router';
 import { TmdbAttribution } from '../components/TmdbAttribution';
@@ -27,14 +27,18 @@ function HeaderSearch() {
   };
 
   return (
-    <form role="search" onSubmit={onSubmit} className="flex flex-1 justify-end">
+    <form
+      role="search"
+      onSubmit={onSubmit}
+      className="order-last flex w-full justify-end md:order-none md:w-auto md:flex-1"
+    >
       <label htmlFor="global-search" className="sr-only">
         {t('search.label')}
       </label>
       <input
         id="global-search"
         type="search"
-        className="input w-full max-w-sm"
+        className="input w-full md:max-w-sm"
         placeholder={t('search.placeholder')}
         value={value}
         onChange={(e) => setValue(e.target.value)}
@@ -45,7 +49,19 @@ function HeaderSearch() {
 
 export function Layout() {
   const { t } = useTranslation();
+  const location = useLocation();
+  const firstRender = useRef(true);
   useBackgroundSync();
+
+  // Al navegar, lleva el foco al contenido principal (lectores de pantalla y teclado).
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+    document.getElementById('main')?.focus({ preventScroll: true });
+    window.scrollTo({ top: 0 });
+  }, [location.pathname]);
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -60,11 +76,14 @@ export function Layout() {
         {t('nav.skipToContent')}
       </a>
       <header className="sticky top-0 z-30 border-b border-neutral-800 bg-neutral-950/95 backdrop-blur">
-        <div className="mx-auto flex max-w-screen-2xl items-center gap-4 px-4 py-3">
+        <div className="mx-auto flex max-w-screen-2xl flex-wrap items-center gap-x-4 gap-y-2 px-4 py-3">
           <Link to="/" className="text-2xl font-black tracking-tight text-brand">
             Listflix
           </Link>
-          <nav aria-label={t('nav.main')} className="flex items-center gap-1">
+          <nav
+            aria-label={t('nav.main')}
+            className="-mx-1 flex max-w-full items-center gap-1 overflow-x-auto"
+          >
             <NavLink to="/" end className={navClass}>
               {t('nav.library')}
             </NavLink>

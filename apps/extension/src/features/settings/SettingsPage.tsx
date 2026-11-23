@@ -2,6 +2,7 @@ import { ProviderLogo } from '../../components/ProviderLogo';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { useSettings } from '../../app/settings-context';
+import { useDocumentTitle } from '../../app/use-document-title';
 import { ErrorMessage, Spinner } from '../../components/Feedback';
 import { metadataLanguageFor, updateSettings } from '../../db/settings';
 import type { MetadataLanguage, UiLanguage } from '../../domain/types';
@@ -71,6 +72,7 @@ function MyProviders() {
 export function SettingsPage() {
   const { t, i18n } = useTranslation();
   const settings = useSettings();
+  useDocumentTitle(t('settings.title'));
   const countries = [...COUNTRIES].sort((a, b) =>
     countryName(a, i18n.language).localeCompare(countryName(b, i18n.language), i18n.language),
   );
@@ -113,7 +115,7 @@ export function SettingsPage() {
             </select>
           </label>
         </div>
-        <p className="mt-3 text-xs text-neutral-500">{t('settings.metadataRefreshNote')}</p>
+        <p className="mt-3 text-xs text-neutral-400">{t('settings.metadataRefreshNote')}</p>
       </Section>
 
       <Section id="settings-country" title={t('settings.country')}>

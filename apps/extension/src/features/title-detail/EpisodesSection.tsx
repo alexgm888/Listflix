@@ -207,7 +207,7 @@ export function EpisodesSection({ seriesKey, renderEpisodeActions }: Props) {
                               <span className={e.watched ? 'text-neutral-400' : ''}>
                                 {e.name ?? t('episodes.episode', { number: e.episode })}
                               </span>
-                              <span className="text-xs text-neutral-500 sm:ml-auto">
+                              <span className="text-xs text-neutral-400 sm:ml-auto">
                                 {airedYet
                                   ? formatDate(e.airDate, i18n.language)
                                   : t('episodes.upcoming', {

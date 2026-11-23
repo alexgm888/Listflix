@@ -75,7 +75,7 @@ export function WhereToWatch({ item, saved }: { item: WatchLinkItem; saved: bool
               </div>
             );
           })}
-          <p className="text-xs text-neutral-500">{t('watch.searchNotice')}</p>
+          <p className="text-xs text-neutral-400">{t('watch.searchNotice')}</p>
         </div>
       )}
       <div className="mt-3">

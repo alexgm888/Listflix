@@ -1,5 +1,6 @@
 import { linkLocalFile } from '../../db/local-media';
 import { episodeKeyOf, type LocalMedia } from '../../domain/types';
+import { i18n } from '../../i18n';
 import { pickVideoFile } from '../../local-media/file-access';
 
 export interface PickedFile {
@@ -10,7 +11,7 @@ export interface PickedFile {
 
 /** Abre el selector de vídeo y devuelve el archivo elegido (o null si se cancela). */
 export async function pickVideo(): Promise<PickedFile | null> {
-  const handle = await pickVideoFile();
+  const handle = await pickVideoFile(i18n.t('local.videoFiles'));
   if (!handle) return null;
   const file = await handle.getFile();
   return { handle, fileName: file.name, fileSize: file.size };

@@ -3,6 +3,7 @@ import { useState, type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 import { EmptyState, Spinner } from '../../components/Feedback';
+import { useDocumentTitle } from '../../app/use-document-title';
 import { db } from '../../db/db';
 import { createList, deleteList, moveInArray, renameList, reorderLists } from '../../db/lists';
 import type { UserList } from '../../domain/types';
@@ -121,6 +122,7 @@ export function ListsPage() {
     return { lists, counts };
   }, []);
   const [newName, setNewName] = useState('');
+  useDocumentTitle(t('lists.title'));
 
   if (!data) return <Spinner />;
 

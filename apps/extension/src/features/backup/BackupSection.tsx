@@ -142,7 +142,7 @@ export function BackupSection() {
           {message.text}
         </p>
       )}
-      <p className="text-xs text-neutral-500">{t('backup.filesNote')}</p>
+      <p className="text-xs text-neutral-400">{t('backup.filesNote')}</p>
     </div>
   );
 }

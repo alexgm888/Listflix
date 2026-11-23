@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router';
 import { useSettings } from '../../app/settings-context';
+import { useDocumentTitle } from '../../app/use-document-title';
 import { EmptyState, Spinner } from '../../components/Feedback';
 import { updateSettings } from '../../db/settings';
 import { buildContinueWatching } from './continue-watching';
@@ -27,6 +28,7 @@ export function LibraryPage() {
   const data = useLibraryData(settings.country, filters.listId);
   const [showFilters, setShowFilters] = useState(false);
   const view = settings.libraryView ?? 'grid';
+  useDocumentTitle(t('library.title'));
 
   const setFilters = (next: LibraryFilters) => setParams(filtersToParams(next), { replace: true });
 

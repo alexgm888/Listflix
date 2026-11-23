@@ -62,6 +62,7 @@ Registro de decisiones que concretan o corrigen la especificación (`docs/especi
   Un episodio cuenta como emitido si su `airDate` es anterior o igual a hoy. Al cambiar el estado
   a mano, `statusIsManual = true`. La ficha ofrece la opción "Automático" para volver a
   calcularlo.
+
 - **"Continuar":** el primer episodio emitido sin ver después del último visto; si no hay ninguno
   después, el primer episodio sin ver.
 - **Al añadir una serie con un estado distinto de "Pendiente"**, el estado se considera fijado a
@@ -87,24 +88,25 @@ Registro de decisiones que concretan o corrigen la especificación (`docs/especi
   publicar, hay que comprobar a mano cada ID con `GET /watch/providers/movie?watch_region=ES` y
   cada URL en el navegador:
 
-  | ID TMDB | Plataforma | Plantilla |
-  |---|---|---|
-  | 8, 1796 | Netflix | `https://www.netflix.com/search?q={q}` |
-  | 119, 9, 10, 2100 | Prime Video / Amazon Video | `https://www.primevideo.com/search?phrase={q}` |
-  | 337 | Disney+ | `https://www.disneyplus.com/search?q={q}` |
-  | 1899, 384 | HBO Max | `https://play.hbomax.com/search?q={q}` |
-  | 350, 2 | Apple TV+ / Apple TV | `https://tv.apple.com/search?term={q}` |
-  | 149 | Movistar Plus+ | `https://www.movistarplus.es/buscar?q={q}` |
-  | 63 | Filmin | `https://www.filmin.es/buscador?q={q}` |
-  | 1773 | SkyShowtime | `https://www.skyshowtime.com/es/search?q={q}` |
-  | 35 | Rakuten TV | `https://www.rakuten.tv/es/search?q={q}` |
-  | 3 | Google Play Películas | `https://play.google.com/store/search?q={q}&c=movies` |
-  | 192 | YouTube | `https://www.youtube.com/results?search_query={q}` |
-  | 283 | Crunchyroll | `https://www.crunchyroll.com/search?q={q}` |
-  | 531 | Paramount+ | `https://www.paramountplus.com/search/?q={q}` |
+  | ID TMDB          | Plataforma                 | Plantilla                                             |
+  | ---------------- | -------------------------- | ----------------------------------------------------- |
+  | 8, 1796          | Netflix                    | `https://www.netflix.com/search?q={q}`                |
+  | 119, 9, 10, 2100 | Prime Video / Amazon Video | `https://www.primevideo.com/search?phrase={q}`        |
+  | 337              | Disney+                    | `https://www.disneyplus.com/search?q={q}`             |
+  | 1899, 384        | HBO Max                    | `https://play.hbomax.com/search?q={q}`                |
+  | 350, 2           | Apple TV+ / Apple TV       | `https://tv.apple.com/search?term={q}`                |
+  | 149              | Movistar Plus+             | `https://www.movistarplus.es/buscar?q={q}`            |
+  | 63               | Filmin                     | `https://www.filmin.es/buscador?q={q}`                |
+  | 1773             | SkyShowtime                | `https://www.skyshowtime.com/es/search?q={q}`         |
+  | 35               | Rakuten TV                 | `https://www.rakuten.tv/es/search?q={q}`              |
+  | 3                | Google Play Películas      | `https://play.google.com/store/search?q={q}&c=movies` |
+  | 192              | YouTube                    | `https://www.youtube.com/results?search_query={q}`    |
+  | 283              | Crunchyroll                | `https://www.crunchyroll.com/search?q={q}`            |
+  | 531              | Paramount+                 | `https://www.paramountplus.com/search/?q={q}`         |
 
   Si una URL no funciona, basta con quitarla del mapa: se usará el respaldo (enlace "dónde ver"
   de TMDB).
+
 - **Logo de TMDB:** por la misma falta de acceso, la atribución usa de momento el texto "TMDB"
   con los colores de la marca. Antes de publicar hay que poner el logo oficial
   (`TmdbAttribution.tsx`).

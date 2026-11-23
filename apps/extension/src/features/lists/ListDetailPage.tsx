@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router';
 import { EmptyState, Spinner } from '../../components/Feedback';
 import { Poster } from '../../components/Poster';
 import { StatusBadge } from '../../components/StatusSelect';
+import { useDocumentTitle } from '../../app/use-document-title';
 import { db } from '../../db/db';
 import { getListItems, moveInArray, removeFromList, reorderListItems } from '../../db/lists';
 import type { LibraryItem } from '../../domain/types';
@@ -21,6 +22,8 @@ export function ListDetailPage() {
     );
     return { list, items };
   }, [id]);
+
+  useDocumentTitle(data?.list?.name ?? t('lists.title'));
 
   if (!data) return <Spinner />;
   if (!data.list) return <EmptyState title={t('lists.notFound')} />;

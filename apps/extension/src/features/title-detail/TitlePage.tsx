@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router';
 import { useLibraryItem, useTitleDetails } from '../../app/hooks';
 import { useSettings } from '../../app/settings-context';
+import { useDocumentTitle } from '../../app/use-document-title';
 import { AddToLibrary } from '../../components/AddToLibrary';
 import { ErrorMessage, Spinner } from '../../components/Feedback';
 import { Poster } from '../../components/Poster';
@@ -32,6 +33,7 @@ export function TitlePage() {
   const { metadataLanguage } = useSettings();
   const details = useTitleDetails(mediaType, tmdbId);
   const item = useLibraryItem(key);
+  useDocumentTitle(details.data?.title);
   const localByEpisode = useLiveQuery(async () => {
     const media = await db.localMedia.where('itemKey').equals(key).toArray();
     return new Map(media.filter((m) => m.episodeKey).map((m) => [m.episodeKey!, m]));

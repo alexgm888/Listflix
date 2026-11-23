@@ -224,7 +224,8 @@
     "chooseMatch": "¿Qué título es?",
     "bestMatch": "mejor coincidencia",
     "willLink": "Se vinculará el archivo a «{{title}}».",
-    "willAdd": "También se añadirá a tu biblioteca."
+    "willAdd": "También se añadirá a tu biblioteca.",
+    "videoFiles": "Vídeo"
   },
   "player": {
     "backToTitle": "Volver a la ficha",
@@ -250,6 +251,7 @@
     "offsetValue": "{{value}} s",
     "size": "Tamaño",
     "background": "Fondo",
-    "halfSecond": "0,5 s"
+    "halfSecond": "0,5 s",
+    "subtitleFiles": "Subtítulos"
   }
 }

@@ -18,10 +18,12 @@ export function isFilePickerSupported(): boolean {
 async function pickFile(
   type: FilePickerAcceptType,
   id: string,
+  description?: string,
 ): Promise<FileSystemFileHandle | null> {
   if (!window.showOpenFilePicker) throw new Error('File System Access API not supported');
   try {
-    const [handle] = await window.showOpenFilePicker({ types: [type], multiple: false, id });
+    const types = [description ? { ...type, description } : type];
+    const [handle] = await window.showOpenFilePicker({ types, multiple: false, id });
     return handle ?? null;
   } catch (err) {
     if (err instanceof DOMException && err.name === 'AbortError') return null;
@@ -29,8 +31,10 @@ async function pickFile(
   }
 }
 
-export const pickVideoFile = () => pickFile(VIDEO_ACCEPT, 'listflix-video');
-export const pickSubtitleFile = () => pickFile(SUBTITLE_ACCEPT, 'listflix-subtitles');
+export const pickVideoFile = (description?: string) =>
+  pickFile(VIDEO_ACCEPT, 'listflix-video', description);
+export const pickSubtitleFile = (description?: string) =>
+  pickFile(SUBTITLE_ACCEPT, 'listflix-subtitles', description);
 
 /**
  * Comprueba el permiso de lectura y, si `request` es true, lo pide.

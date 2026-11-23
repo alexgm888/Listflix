@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 import { useLibraryKeys } from '../../app/hooks';
 import { useSettings } from '../../app/settings-context';
+import { useDocumentTitle } from '../../app/use-document-title';
 import { EmptyState, ErrorMessage, Spinner } from '../../components/Feedback';
 import { Poster } from '../../components/Poster';
 import { itemKeyOf, type MediaType } from '../../domain/types';
@@ -39,6 +40,7 @@ export function LinkFilePage() {
   const [season, setSeason] = useState(1);
   const [episode, setEpisode] = useState(1);
   const [saving, setSaving] = useState(false);
+  useDocumentTitle(t('local.linkPageTitle'));
 
   const candidates = useQuery({
     queryKey: ['link-candidates', query, metadataLanguage],

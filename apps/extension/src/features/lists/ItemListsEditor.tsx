@@ -35,7 +35,7 @@ export function ItemListsEditor({ itemKey }: { itemKey: string }) {
         <ul className="mb-3 flex flex-wrap gap-2">
           {data.lists.map((list) => (
             <li key={list.id}>
-              <label className="chip cursor-pointer" aria-pressed={data.inLists.has(list.id)}>
+              <label className="chip cursor-pointer has-[:checked]:border-brand has-[:checked]:bg-brand/20 has-[:checked]:text-white">
                 <input
                   type="checkbox"
                   className="accent-brand"

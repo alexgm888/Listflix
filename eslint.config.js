@@ -29,6 +29,12 @@ export default tseslint.config(
     },
   },
   {
+    // Scripts E2E de Playwright (CommonJS, Node).
+    files: ['**/*.cjs'],
+    languageOptions: { sourceType: 'commonjs' },
+    rules: { '@typescript-eslint/no-require-imports': 'off' },
+  },
+  {
     files: ['apps/extension/**/*.{ts,tsx}'],
     plugins: { 'react-hooks': reactHooks },
     rules: {

@@ -109,3 +109,13 @@ Vincula vídeos de tu equipo (`#/link` o desde la ficha): Listflix analiza el no
 En Ajustes, "Exportar biblioteca" descarga un JSON y "Importar copia…" lo valida con zod y
 permite **fusionar** (gana la versión más reciente) o **reemplazar**. Los archivos locales no se
 exportan: quedan pendientes de volver a vincular.
+
+### i18n, accesibilidad y pulido (M10)
+
+- Interfaz completa en español e inglés. Un test comprueba que las dos traducciones tienen las
+  mismas claves y que existen todas las que usa el código.
+- Título de pestaña por pantalla y foco al contenido al navegar.
+- Enlace "Saltar al contenido", foco visible y `alt`/`aria-label` en pósters y controles.
+- Contraste revisado con axe-core: 0 violaciones en todas las pantallas.
+- Diseño adaptado a móvil.
+- Pruebas E2E opcionales con Playwright en `apps/extension/e2e`.

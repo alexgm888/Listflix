@@ -8,13 +8,13 @@ export function AboutSection() {
   return (
     <div className="flex flex-col gap-3 text-sm text-neutral-300">
       <p>
-        <strong className="text-brand">Listflix</strong> {version && `v${version}`} —{' '}
+        <strong className="text-brand-strong">Listflix</strong> {version && `v${version}`} —{' '}
         {t('about.description')}
       </p>
       <p>{t('about.privacy')}</p>
       <TmdbAttribution />
       <JustWatchAttribution />
-      <p className="text-xs text-neutral-500">{t('about.trademarks')}</p>
+      <p className="text-xs text-neutral-400">{t('about.trademarks')}</p>
     </div>
   );
 }

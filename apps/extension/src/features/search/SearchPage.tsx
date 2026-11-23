@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link, useSearchParams } from 'react-router';
 import { useLibraryKeys } from '../../app/hooks';
 import { useSettings } from '../../app/settings-context';
+import { useDocumentTitle } from '../../app/use-document-title';
 import { AddToLibrary } from '../../components/AddToLibrary';
 import { EmptyState, ErrorMessage, Spinner } from '../../components/Feedback';
 import { Poster } from '../../components/Poster';
@@ -15,6 +16,7 @@ export function SearchPage() {
   const query = (params.get('q') ?? '').trim();
   const { metadataLanguage } = useSettings();
   const savedKeys = useLibraryKeys();
+  useDocumentTitle(query ? t('search.resultsFor', { query }) : t('nav.library'));
 
   const search = useInfiniteQuery({
     queryKey: ['search', query, metadataLanguage],
