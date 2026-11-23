@@ -39,3 +39,32 @@ Registro de decisiones que concretan o corrigen la especificación (`docs/especi
 - **Ruta `/configuration`:** queda en la lista blanca, pero la extensión usa tamaños de imagen
   fijos (`w92`, `w185`, `w342`, `w780`, `w1280`), que TMDB mantiene estables, para ahorrar una
   petición.
+
+## Modelo de datos
+
+- **`LibraryItem.metadataLanguage`** (campo añadido): idioma en que se obtuvieron los metadatos.
+  Permite refrescar en segundo plano los títulos cuando cambia el idioma de los metadatos
+  (§12).
+- **`LocalMedia.handle` es opcional.** La exportación incluye los registros de `LocalMedia` sin
+  el handle (`itemKey`, `episodeKey`, `fileName`, `fileSize`). Así el progreso exportado no se
+  queda sin dueño, y los archivos quedan "pendientes de volver a vincular" tras importar.
+- **`Settings`** añade `subtitleStyle` (tamaño y opacidad del fondo de los subtítulos) y
+  `libraryView` (cuadrícula o lista).
+- **Episodios:** se guarda un `EpisodeState` por episodio de cada serie de la biblioteca. Se
+  sincronizan con TMDB al añadir la serie y al abrir su ficha si los datos tienen más de un día.
+  Se conservan los episodios marcados como vistos. La **temporada 0 (especiales) no se sigue**.
+- **Estado calculado de una serie:**
+  - ningún episodio visto → `pending`;
+  - todos los episodios ya emitidos vistos → `watched`;
+  - en otro caso → `watching`;
+  - `dropped` solo se fija a mano.
+
+  Un episodio cuenta como emitido si su `airDate` es anterior o igual a hoy. Al cambiar el estado
+  a mano, `statusIsManual = true`. La ficha ofrece la opción "Automático" para volver a
+  calcularlo.
+- **"Continuar":** el primer episodio emitido sin ver después del último visto; si no hay ninguno
+  después, el primer episodio sin ver.
+- **Al añadir una serie con un estado distinto de "Pendiente"**, el estado se considera fijado a
+  mano (si no, los episodios lo devolverían a "Pendiente").
+- **Revincular un archivo** al mismo destino (película o episodio) reutiliza el registro de
+  `LocalMedia`. El progreso solo se conserva si coinciden el nombre y el tamaño del archivo.

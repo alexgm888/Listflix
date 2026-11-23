@@ -48,3 +48,9 @@ pnpm deploy
 
 Después del primer despliegue, ajusta `ALLOWED_ORIGINS` en `wrangler.toml` con el ID de la
 extensión publicada y pon la URL del Worker en `WXT_API_BASE_URL` al compilar la extensión.
+
+### Datos (M2)
+
+Esquema Dexie versionado (`apps/extension/src/db/db.ts`) y repositorios para biblioteca,
+episodios (con estado calculado de series), listas, archivos locales, progreso, caché de
+plataformas y ajustes.
