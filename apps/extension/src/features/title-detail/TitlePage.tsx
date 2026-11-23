@@ -1,3 +1,4 @@
+import { useLiveQuery } from 'dexie-react-hooks';
 import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router';
@@ -14,6 +15,9 @@ import { metadataProvider } from '../../lib/api';
 import { formatRating, formatRuntime } from '../../lib/format';
 import { tmdbImage } from '../../lib/images';
 import { ItemListsEditor } from '../lists/ItemListsEditor';
+import { EpisodeLocalActions } from '../local-media/EpisodeLocalActions';
+import { LocalMediaSection } from '../local-media/LocalMediaSection';
+import { db } from '../../db/db';
 import { EpisodesSection } from './EpisodesSection';
 import { WhereToWatch } from './WhereToWatch';
 import { needsEpisodeSync, refreshItem } from '../../sync/metadata-sync';
@@ -28,6 +32,10 @@ export function TitlePage() {
   const { metadataLanguage } = useSettings();
   const details = useTitleDetails(mediaType, tmdbId);
   const item = useLibraryItem(key);
+  const localByEpisode = useLiveQuery(async () => {
+    const media = await db.localMedia.where('itemKey').equals(key).toArray();
+    return new Map(media.filter((m) => m.episodeKey).map((m) => [m.episodeKey!, m]));
+  }, [key]);
 
   // Si el título está guardado, aprovecha los detalles recién descargados para
   // refrescar sus metadatos (y episodios) cuando estén caducados.
@@ -151,7 +159,16 @@ export function TitlePage() {
         />
       )}
 
-      {item && item.mediaType === 'tv' && <EpisodesSection seriesKey={key} />}
+      {item && <LocalMediaSection item={item} />}
+
+      {item && item.mediaType === 'tv' && (
+        <EpisodesSection
+          seriesKey={key}
+          renderEpisodeActions={(ep) => (
+            <EpisodeLocalActions episode={ep} media={localByEpisode?.get(ep.key)} />
+          )}
+        />
+      )}
 
       {item === undefined && d.mediaType === 'tv' && d.seasons && d.seasons.length > 0 && (
         <section aria-labelledby="seasons-title">

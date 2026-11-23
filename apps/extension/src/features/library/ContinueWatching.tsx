@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 import { tmdbImage } from '../../lib/images';
+import { PlayButton } from '../local-media/PlayButton';
 import type { ContinueEntry } from './continue-watching';
 import { titlePath } from './TitleCard';
 
@@ -48,6 +49,11 @@ export function ContinueWatchingRow({ entries }: { entries: ContinueEntry[] }) {
                   <p className="truncate text-sm text-neutral-400">{subtitle}</p>
                 </div>
               </Link>
+              {entry.kind === 'movie' && entry.media.handle && (
+                <div className="mt-2">
+                  <PlayButton media={entry.media} />
+                </div>
+              )}
             </li>
           );
         })}

@@ -90,3 +90,16 @@ con botón "Ver en …" que abre la búsqueda en esa plataforma (o la página de
 Filtro por plataforma en la biblioteca, plataformas contratadas en Ajustes y atribuciones a TMDB
 y JustWatch. **Las URLs de búsqueda están pendientes de verificar**: ver
 [`docs/decisiones.md`](docs/decisiones.md).
+
+### Medios locales (M8)
+
+Vincula vídeos de tu equipo (`#/link` o desde la ficha): Listflix analiza el nombre del archivo
+(título, año, `SxxEyy`), propone las 5 fichas que mejor coinciden y guarda el
+`FileSystemFileHandle` en IndexedDB. El reproductor propio (`player.html`):
+
+- reanuda desde la última posición;
+- marca como visto al pasar del 90 %;
+- carga subtítulos `.srt`/`.vtt` (con detección de windows-1252) y ajusta su desfase en pasos de
+  ±0,5 s;
+- ajusta el tamaño y el fondo de los subtítulos;
+- ofrece "Siguiente episodio".

@@ -143,3 +143,19 @@ export function needsMetadataRefresh(
     now - item.metadataFetchedAt > maxAgeMs
   );
 }
+
+/** Al empezar a reproducir una película pendiente, pasa a "viendo". */
+export async function markPlaybackStarted(key: string, now = Date.now()): Promise<void> {
+  await db.transaction('rw', db.items, async () => {
+    const item = await db.items.get(key);
+    if (!item) return;
+    const patch: Partial<LibraryItem> = { lastWatchedAt: now, updatedAt: now };
+    if (item.mediaType === 'movie' && item.status === 'pending') patch.status = 'watching';
+    await db.items.update(key, patch);
+  });
+}
+
+/** Marca una película como vista (p. ej. al pasar del 90 % en el reproductor). */
+export async function markMovieWatched(key: string, now = Date.now()): Promise<void> {
+  await db.items.update(key, { status: 'watched', lastWatchedAt: now, updatedAt: now });
+}

@@ -108,3 +108,31 @@ Registro de decisiones que concretan o corrigen la especificación (`docs/especi
 - **Logo de TMDB:** por la misma falta de acceso, la atribución usa de momento el texto "TMDB"
   con los colores de la marca. Antes de publicar hay que poner el logo oficial
   (`TmdbAttribution.tsx`).
+
+## Medios locales (M8)
+
+- **Selección de episodio al vincular:** se propone la temporada y el episodio extraídos del
+  nombre del archivo (`SxxEyy`, `1x02`, `s01.e02`, "Temporada 1 Capítulo 2") y el usuario
+  puede corregirlos. La clave del episodio (`tv:id:sXeY`) se puede vincular aunque los episodios
+  aún no estén sincronizados.
+- **Emparejamiento:** se busca primero por el tipo deducido (serie si hay `SxxEyy`; si no,
+  película) con el año, después sin el año y por último con el otro tipo. Los 5 primeros
+  resultados se ordenan por coincidencia exacta de título (traducido u original) y año.
+- **Al vincular desde `#/link` un título que no está en la biblioteca**, se añade como
+  "Pendiente".
+- **Permisos:** "Reproducir" pide el permiso de lectura en la página de la biblioteca, dentro del
+  clic. Después se abre el reproductor en una pestaña nueva, que solo consulta el permiso. Si no
+  lo tiene, muestra un botón "Permitir acceso al archivo" (otro gesto del usuario). Chrome 122+
+  recuerda el permiso entre sesiones si el usuario elige "Permitir siempre".
+- **Subtítulos:** las pistas se crean con `addTextTrack` y `VTTCue`. El desfase vuelve a crear
+  las cues desplazadas, sin recargar el vídeo. Los subtítulos cargados se guardan en
+  `LocalMedia.subtitleHandles` y se vuelven a cargar solos si el permiso sigue concedido (si no,
+  aparece un botón para cargarlos). El tamaño y la opacidad del fondo (`::cue`) se guardan en
+  los ajustes.
+- **"Siguiente episodio":** solo aparece si el episodio inmediatamente siguiente (según los
+  episodios sincronizados) tiene archivo local.
+- **Al empezar a reproducir una película "Pendiente"**, pasa a "Viendo". Al pasar del 90 % se
+  marca como vista (película) o se marca el episodio (serie, con recálculo del estado).
+- **Compatibilidad:** MP4/M4V, WebM y Ogg se consideran fiables. AVI y WMV, no compatibles. MOV y
+  MKV, "inciertos" según `canPlayType`. En todos los casos se intenta reproducir, y el evento
+  `error` del `<video>` muestra el aviso definitivo.
