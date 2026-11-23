@@ -104,5 +104,26 @@
   },
   "episodes": {
     "code": "S{{season}}E{{episode}}"
+  },
+  "lists": {
+    "title": "Lists",
+    "name": "List name",
+    "newPlaceholder": "New list…",
+    "newAndAdd": "Create a list and add this title…",
+    "create": "Create",
+    "rename": "Rename",
+    "remove": "Remove",
+    "removeItem": "Remove “{{title}}” from the list",
+    "deleteConfirm": "Delete the list “{{name}}”? Titles will stay in your library.",
+    "moveUp": "Move “{{name}}” up",
+    "moveDown": "Move “{{name}}” down",
+    "itemsCount_one": "{{count}} title",
+    "itemsCount_other": "{{count}} titles",
+    "empty": "You don't have any lists yet",
+    "emptyHint": "Create lists to group titles: “Weekend picks”, “Classics”…",
+    "notFound": "This list doesn't exist.",
+    "emptyList": "This list is empty",
+    "emptyListHint": "Add titles from their detail page.",
+    "openInLibrary": "Open in library with filters"
   }
 }

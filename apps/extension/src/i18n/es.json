@@ -104,5 +104,26 @@
   },
   "episodes": {
     "code": "T{{season}}E{{episode}}"
+  },
+  "lists": {
+    "title": "Listas",
+    "name": "Nombre de la lista",
+    "newPlaceholder": "Nueva lista…",
+    "newAndAdd": "Crear una lista y añadir el título…",
+    "create": "Crear",
+    "rename": "Renombrar",
+    "remove": "Quitar",
+    "removeItem": "Quitar «{{title}}» de la lista",
+    "deleteConfirm": "¿Borrar la lista «{{name}}»? Los títulos seguirán en tu biblioteca.",
+    "moveUp": "Subir «{{name}}»",
+    "moveDown": "Bajar «{{name}}»",
+    "itemsCount_one": "{{count}} título",
+    "itemsCount_other": "{{count}} títulos",
+    "empty": "Todavía no tienes listas",
+    "emptyHint": "Crea listas para agrupar títulos: «Para el finde», «Clásicos»…",
+    "notFound": "La lista no existe.",
+    "emptyList": "Esta lista está vacía",
+    "emptyListHint": "Añade títulos desde su ficha.",
+    "openInLibrary": "Ver en la biblioteca con filtros"
   }
 }

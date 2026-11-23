@@ -70,3 +70,9 @@ lista), búsqueda de texto sin tildes, orden por fecha de añadido, título, añ
 `node apps/extension/e2e/mock-api.mjs` levanta una API simulada en `http://localhost:8788` para
 probar la extensión sin token de TMDB
 (`WXT_API_BASE_URL=http://localhost:8788 pnpm build`).
+
+### Listas personales (M5)
+
+Crear, renombrar, borrar y reordenar listas (`#/lists`). Cada lista tiene su orden propio
+(`#/lists/:id`). Un título puede estar en varias listas, que se eligen desde su ficha. La
+biblioteca filtra por lista.

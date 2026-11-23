@@ -13,6 +13,7 @@ import { itemKeyOf, type MediaType } from '../../domain/types';
 import { metadataProvider } from '../../lib/api';
 import { formatRating, formatRuntime } from '../../lib/format';
 import { tmdbImage } from '../../lib/images';
+import { ItemListsEditor } from '../lists/ItemListsEditor';
 import { needsEpisodeSync, refreshItem } from '../../sync/metadata-sync';
 
 export function TitlePage() {
@@ -134,6 +135,8 @@ export function TitlePage() {
           </div>
         </div>
       </header>
+
+      {item && <ItemListsEditor itemKey={key} />}
 
       {d.cast.length > 0 && (
         <section aria-labelledby="cast-title">
