@@ -1,0 +1,34 @@
+# Listflix
+
+Extensión de Chrome que funciona como **biblioteca personal de películas y series**: guarda
+títulos, organízalos con estados y listas, mira en qué plataforma están disponibles y
+reprodúcelos desde tus propios archivos con subtítulos externos.
+
+- Datos del usuario **solo en local** (IndexedDB).
+- Metadatos de [TMDB](https://www.themoviedb.org) a través de un proxy propio en Cloudflare
+  Workers (`apps/worker`). El bundle de la extensión no contiene ninguna clave.
+- Interfaz en español e inglés.
+
+Especificación: [`docs/especificacion.md`](docs/especificacion.md) ·
+Decisiones: [`docs/decisiones.md`](docs/decisiones.md)
+
+## Requisitos
+
+- Node.js 22+ y pnpm 10+
+- Chrome 122+ (File System Access API con permisos persistentes)
+
+## Puesta en marcha
+
+```sh
+pnpm install
+cp apps/extension/.env.example apps/extension/.env   # URL del Worker
+pnpm dev                                             # abre Chrome con la extensión cargada
+```
+
+Para cargarla a mano: `pnpm build` y, en `chrome://extensions` (modo desarrollador), "Cargar
+descomprimida" con `apps/extension/.output/chrome-mv3`.
+
+## Estado por hitos
+
+- **M0 – Base:** monorepo pnpm, WXT + React + TS + Tailwind, ESLint, Prettier, Vitest y CI. El
+  icono abre la biblioteca o enfoca la pestaña si ya está abierta.

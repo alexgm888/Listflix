@@ -1,0 +1,27 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-brand: #e50914;
+  --color-brand-strong: #ff2a35;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background-color: var(--color-neutral-950);
+  color: var(--color-neutral-100);
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand-strong);
+  outline-offset: 2px;
+}
