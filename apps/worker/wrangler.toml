@@ -1,0 +1,19 @@
+name = "listflix-api"
+main = "src/index.ts"
+compatibility_date = "2026-11-01"
+
+[vars]
+# Orígenes permitidos, separados por comas. Admite comodín final.
+# En producción: "chrome-extension://<ID publicado>,chrome-extension://<ID de desarrollo>"
+ALLOWED_ORIGINS = "chrome-extension://*"
+
+# Límite por IP de las peticiones que no salen de la caché.
+# https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/
+[[ratelimits]]
+name = "RATE_LIMITER"
+namespace_id = "1001"
+simple = { limit = 60, period = 60 }
+
+# El token de TMDB (API Read Access Token v4) es un secreto:
+#   pnpm wrangler secret put TMDB_TOKEN
+# En local, se define en .dev.vars (ver .dev.vars.example).

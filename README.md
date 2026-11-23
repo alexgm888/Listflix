@@ -32,3 +32,19 @@ descomprimida" con `apps/extension/.output/chrome-mv3`.
 
 - **M0 – Base:** monorepo pnpm, WXT + React + TS + Tailwind, ESLint, Prettier, Vitest y CI. El
   icono abre la biblioteca o enfoca la pestaña si ya está abierta.
+- **M1 – Worker:** proxy de TMDB en Cloudflare Workers con lista blanca de rutas y parámetros,
+  caché en el edge con clave normalizada, CORS, límite por IP y errores normalizados. Cliente
+  tipado en `packages/shared`.
+
+## Worker (proxy de TMDB)
+
+```sh
+cd apps/worker
+cp .dev.vars.example .dev.vars        # pon tu API Read Access Token (v4) de TMDB
+pnpm dev                              # http://localhost:8787
+pnpm wrangler secret put TMDB_TOKEN   # producción
+pnpm deploy
+```
+
+Después del primer despliegue, ajusta `ALLOWED_ORIGINS` en `wrangler.toml` con el ID de la
+extensión publicada y pon la URL del Worker en `WXT_API_BASE_URL` al compilar la extensión.
