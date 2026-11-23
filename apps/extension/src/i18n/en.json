@@ -169,7 +169,24 @@
     "myProvidersHint": "Select the platforms you subscribe to, to highlight and filter by them."
   },
   "backup": {
-    "title": "Backup"
+    "title": "Backup",
+    "intro": "Your data lives only in this browser. Export a JSON backup to keep it safe or move it to another computer.",
+    "export": "Export library",
+    "import": "Import backup…",
+    "exported_one": "Backup exported with {{count}} title.",
+    "exported_other": "Backup exported with {{count}} titles.",
+    "error_invalid-json": "The file isn't valid JSON.",
+    "error_invalid-format": "The file isn't a valid Listflix backup.",
+    "fileSummary": "Backup from {{date}}: {{items}} titles and {{lists}} lists.",
+    "mode": "How do you want to import it?",
+    "merge": "Merge",
+    "mergeHint": "combines the backup with your current data; if a title is in both, the most recent version wins.",
+    "replace": "Replace",
+    "replaceHint": "deletes everything you have now and keeps exactly what's in the backup.",
+    "replaceConfirm": "All current data will be deleted and replaced with the backup. Continue?",
+    "confirmImport": "Import",
+    "imported": "Import complete: {{items}} titles. Local files that need to be linked again: {{files}}.",
+    "filesNote": "Local files aren't included in the backup (only their name and size): you'll need to link them again after importing."
   },
   "local": {
     "title": "Local file",

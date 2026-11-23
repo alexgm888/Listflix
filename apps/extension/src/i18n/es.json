@@ -169,7 +169,24 @@
     "myProvidersHint": "Marca las plataformas que tienes contratadas para destacarlas y filtrar por ellas."
   },
   "backup": {
-    "title": "Copia de seguridad"
+    "title": "Copia de seguridad",
+    "intro": "Tus datos solo están en este navegador. Exporta una copia en JSON para no perderlos o para llevarlos a otro equipo.",
+    "export": "Exportar biblioteca",
+    "import": "Importar copia…",
+    "exported_one": "Copia exportada con {{count}} título.",
+    "exported_other": "Copia exportada con {{count}} títulos.",
+    "error_invalid-json": "El archivo no es un JSON válido.",
+    "error_invalid-format": "El archivo no es una copia de Listflix válida.",
+    "fileSummary": "Copia del {{date}}: {{items}} títulos y {{lists}} listas.",
+    "mode": "¿Cómo quieres importarla?",
+    "merge": "Fusionar",
+    "mergeHint": "combina la copia con lo que ya tienes; si un título está en los dos, gana la versión más reciente.",
+    "replace": "Reemplazar",
+    "replaceHint": "borra todo lo que hay ahora y deja exactamente lo de la copia.",
+    "replaceConfirm": "Se borrarán todos los datos actuales y se sustituirán por los de la copia. ¿Continuar?",
+    "confirmImport": "Importar",
+    "imported": "Importación completada: {{items}} títulos. Archivos locales pendientes de volver a vincular: {{files}}.",
+    "filesNote": "Los archivos locales no se incluyen en la copia (solo su nombre y tamaño): después de importar hay que volver a vincularlos."
   },
   "local": {
     "title": "Archivo local",

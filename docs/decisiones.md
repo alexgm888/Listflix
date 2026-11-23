@@ -136,3 +136,20 @@ Registro de decisiones que concretan o corrigen la especificación (`docs/especi
 - **Compatibilidad:** MP4/M4V, WebM y Ogg se consideran fiables. AVI y WMV, no compatibles. MOV y
   MKV, "inciertos" según `canPlayType`. En todos los casos se intenta reproducir, y el evento
   `error` del `<video>` muestra el aviso definitivo.
+
+## Copia de seguridad (M9)
+
+- **Formato:** el de la §5, más `localMedia` (sin handles; ver "Modelo de datos"). No se exporta
+  la caché de plataformas (se vuelve a descargar). En `settings` no van `id` ni
+  `schemaVersion`.
+- **Fusionar:**
+  - títulos: gana el `updatedAt` más reciente;
+  - episodios: gana el `watchedAt` más reciente;
+  - progreso: gana el `updatedAt` más reciente;
+  - listas, elementos de listas y archivos locales: se añaden los que no existen y no se tocan
+    los que ya están (no tienen fecha de modificación);
+  - se conservan los ajustes actuales;
+  - al terminar se recalcula el estado de las series automáticas.
+- **Reemplazar:** borra todo y restaura la copia, ajustes incluidos.
+- **En los dos modos**, si un archivo local con el mismo ID, nombre y tamaño sigue vinculado en
+  este navegador, se conserva su handle.

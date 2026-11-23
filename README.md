@@ -103,3 +103,9 @@ Vincula vídeos de tu equipo (`#/link` o desde la ficha): Listflix analiza el no
   ±0,5 s;
 - ajusta el tamaño y el fondo de los subtítulos;
 - ofrece "Siguiente episodio".
+
+### Copia de seguridad (M9)
+
+En Ajustes, "Exportar biblioteca" descarga un JSON y "Importar copia…" lo valida con zod y
+permite **fusionar** (gana la versión más reciente) o **reemplazar**. Los archivos locales no se
+exportan: quedan pendientes de volver a vincular.
