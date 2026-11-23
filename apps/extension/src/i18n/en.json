@@ -1,0 +1,70 @@
+{
+  "common": {
+    "loading": "Loading…",
+    "retry": "Retry",
+    "back": "Back",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "close": "Close",
+    "confirm": "Confirm"
+  },
+  "nav": {
+    "skipToContent": "Skip to content",
+    "main": "Main navigation",
+    "library": "Library",
+    "lists": "Lists",
+    "linkFile": "Link file",
+    "settings": "Settings"
+  },
+  "search": {
+    "label": "Search movies and TV shows",
+    "placeholder": "Search movies and TV shows…",
+    "inLibrary": "In your library",
+    "add": "Add",
+    "addTitle": "Add “{{title}}” to your library",
+    "initialStatus": "Initial status",
+    "empty": "Type in the search box to find movies and TV shows.",
+    "resultsFor": "Results for “{{query}}”",
+    "noResults": "No results.",
+    "loadMore": "Load more"
+  },
+  "errors": {
+    "network": "Can't reach the server. Check your connection.",
+    "rateLimited": "Too many requests. Wait a moment and try again.",
+    "notFound": "Title not found.",
+    "generic": "Something went wrong. Please try again."
+  },
+  "about": {
+    "tmdbNotice": "This product uses the TMDB API but is not endorsed or certified by TMDB."
+  },
+  "watch": {
+    "justwatch": "Availability data provided by"
+  },
+  "status": {
+    "pending": "Pending",
+    "watching": "Watching",
+    "watched": "Watched",
+    "dropped": "Dropped",
+    "automatic": "Automatic ({{status}})"
+  },
+  "mediaType": {
+    "movie": "Movie",
+    "tv": "TV show"
+  },
+  "title": {
+    "seasonsCount_one": "{{count}} season",
+    "seasonsCount_other": "{{count}} seasons",
+    "removeConfirm": "Remove “{{title}}” from your library? Its progress and linked files will also be removed.",
+    "originalTitle": "Original title",
+    "genres": "Genres",
+    "tmdbRating": "{{rating}} on TMDB",
+    "status": "Status",
+    "remove": "Remove from library",
+    "cast": "Top cast"
+  },
+  "library": {
+    "empty": "Your library is empty",
+    "emptyHint": "Use the search box above to add movies and TV shows."
+  }
+}

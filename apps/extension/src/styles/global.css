@@ -25,3 +25,30 @@ body {
   outline: 2px solid var(--color-brand-strong);
   outline-offset: 2px;
 }
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-strong disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-neutral-800 px-4 py-2 text-sm font-medium text-neutral-100 transition hover:bg-neutral-700 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-1 rounded-md px-2 py-1 text-sm text-neutral-300 transition hover:bg-neutral-800 hover:text-white disabled:opacity-50;
+  }
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-red-900 px-4 py-2 text-sm font-medium text-red-100 transition hover:bg-red-800;
+  }
+  .input {
+    @apply rounded-md border border-neutral-700 bg-neutral-900 px-3 py-2 text-sm text-neutral-100 placeholder:text-neutral-500 focus:border-brand focus:outline-none;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full border border-neutral-700 px-3 py-1 text-xs text-neutral-300 transition hover:border-neutral-500;
+  }
+  .chip[aria-pressed='true'] {
+    @apply border-brand bg-brand/20 text-white;
+  }
+  .section-title {
+    @apply mb-3 text-lg font-semibold text-neutral-100;
+  }
+}

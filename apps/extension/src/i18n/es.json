@@ -1,0 +1,70 @@
+{
+  "common": {
+    "loading": "Cargando…",
+    "retry": "Reintentar",
+    "back": "Volver",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "delete": "Borrar",
+    "close": "Cerrar",
+    "confirm": "Confirmar"
+  },
+  "nav": {
+    "skipToContent": "Saltar al contenido",
+    "main": "Navegación principal",
+    "library": "Biblioteca",
+    "lists": "Listas",
+    "linkFile": "Vincular archivo",
+    "settings": "Ajustes"
+  },
+  "search": {
+    "label": "Buscar películas y series",
+    "placeholder": "Buscar películas y series…",
+    "inLibrary": "En tu biblioteca",
+    "add": "Añadir",
+    "addTitle": "Añadir «{{title}}» a la biblioteca",
+    "initialStatus": "Estado inicial",
+    "empty": "Escribe algo en el buscador para encontrar películas y series.",
+    "resultsFor": "Resultados para «{{query}}»",
+    "noResults": "No hay resultados.",
+    "loadMore": "Cargar más"
+  },
+  "errors": {
+    "network": "No se puede conectar con el servidor. Comprueba tu conexión.",
+    "rateLimited": "Demasiadas peticiones. Espera un momento y vuelve a intentarlo.",
+    "notFound": "No se ha encontrado el título.",
+    "generic": "Algo ha fallado. Vuelve a intentarlo."
+  },
+  "about": {
+    "tmdbNotice": "Este producto usa la API de TMDB, pero TMDB no lo respalda ni lo certifica."
+  },
+  "watch": {
+    "justwatch": "Datos de disponibilidad proporcionados por"
+  },
+  "status": {
+    "pending": "Pendiente",
+    "watching": "Viendo",
+    "watched": "Vista",
+    "dropped": "Abandonada",
+    "automatic": "Automático ({{status}})"
+  },
+  "mediaType": {
+    "movie": "Película",
+    "tv": "Serie"
+  },
+  "title": {
+    "seasonsCount_one": "{{count}} temporada",
+    "seasonsCount_other": "{{count}} temporadas",
+    "removeConfirm": "¿Quitar «{{title}}» de la biblioteca? Se borrarán también su progreso y sus archivos vinculados.",
+    "originalTitle": "Título original",
+    "genres": "Géneros",
+    "tmdbRating": "{{rating}} en TMDB",
+    "status": "Estado",
+    "remove": "Quitar de la biblioteca",
+    "cast": "Reparto principal"
+  },
+  "library": {
+    "empty": "Tu biblioteca está vacía",
+    "emptyHint": "Usa el buscador de arriba para añadir películas y series."
+  }
+}

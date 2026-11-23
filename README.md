@@ -54,3 +54,9 @@ extensión publicada y pon la URL del Worker en `WXT_API_BASE_URL` al compilar l
 Esquema Dexie versionado (`apps/extension/src/db/db.ts`) y repositorios para biblioteca,
 episodios (con estado calculado de series), listas, archivos locales, progreso, caché de
 plataformas y ajustes.
+
+### Buscar y guardar (M3)
+
+Búsqueda en TMDB (`search/multi`) con paginación, "Añadir" con estado inicial y ficha de detalle
+(póster, fondo, sinopsis, géneros, duración o temporadas, reparto y nota). Al añadir un título se
+completan sus metadatos en segundo plano. La interfaz está en español e inglés con i18next.
