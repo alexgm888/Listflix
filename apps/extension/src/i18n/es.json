@@ -61,10 +61,48 @@
     "tmdbRating": "{{rating}} en TMDB",
     "status": "Estado",
     "remove": "Quitar de la biblioteca",
-    "cast": "Reparto principal"
+    "cast": "Reparto principal",
+    "statusOf": "Estado de «{{title}}»"
   },
   "library": {
     "empty": "Tu biblioteca está vacía",
-    "emptyHint": "Usa el buscador de arriba para añadir películas y series."
+    "emptyHint": "Usa el buscador de arriba para añadir películas y series.",
+    "title": "Biblioteca",
+    "count": "{{count}} de {{total}}",
+    "searchInLibrary": "Buscar en la biblioteca",
+    "view": "Vista",
+    "view_grid": "Cuadrícula",
+    "view_list": "Lista",
+    "noMatches": "Ningún título coincide con los filtros.",
+    "continueWatching": "Continuar viendo",
+    "resumeMovie": "Continuar reproducción",
+    "hasLocal": "Archivo local disponible"
+  },
+  "filters": {
+    "title": "Filtros",
+    "type": "Tipo",
+    "all": "Todos",
+    "status": "Estado",
+    "platform": "Plataforma",
+    "myPlatforms": "Mis plataformas",
+    "subscribed": "Contratada",
+    "local": "Archivos",
+    "localOnly": "Disponible en local",
+    "list": "Lista",
+    "allLists": "Todas",
+    "genre": "Género",
+    "clear": "Quitar filtros"
+  },
+  "sort": {
+    "label": "Orden",
+    "addedAt": "Fecha de añadido",
+    "title": "Título",
+    "year": "Año",
+    "rating": "Nota",
+    "ascending": "Ascendente",
+    "descending": "Descendente"
+  },
+  "episodes": {
+    "code": "T{{season}}E{{episode}}"
   }
 }

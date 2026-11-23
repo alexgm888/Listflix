@@ -60,3 +60,13 @@ plataformas y ajustes.
 Búsqueda en TMDB (`search/multi`) con paginación, "Añadir" con estado inicial y ficha de detalle
 (póster, fondo, sinopsis, géneros, duración o temporadas, reparto y nota). Al añadir un título se
 completan sus metadatos en segundo plano. La interfaz está en español e inglés con i18next.
+
+### Biblioteca (M4)
+
+Cuadrícula o lista, filtros combinables (tipo, estado, género, plataforma, disponible en local y
+lista), búsqueda de texto sin tildes, orden por fecha de añadido, título, año o nota, y fila
+"Continuar viendo". Los filtros viven en la URL (`#/?type=tv&status=watching…`).
+
+`node apps/extension/e2e/mock-api.mjs` levanta una API simulada en `http://localhost:8788` para
+probar la extensión sin token de TMDB
+(`WXT_API_BASE_URL=http://localhost:8788 pnpm build`).

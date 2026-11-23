@@ -9,6 +9,7 @@ interface StatusSelectProps {
   /** Si se indica, añade la opción "Automático" (series). */
   onAutomatic?: () => void;
   isManual?: boolean;
+  hideLabel?: boolean;
 }
 
 const AUTO = '__auto__';
@@ -20,11 +21,12 @@ export function StatusSelect({
   label,
   onAutomatic,
   isManual,
+  hideLabel,
 }: StatusSelectProps) {
   const { t } = useTranslation();
   return (
     <label className="flex flex-col gap-1 text-sm">
-      {label && <span className="text-neutral-400">{label}</span>}
+      {label && <span className={hideLabel ? 'sr-only' : 'text-neutral-400'}>{label}</span>}
       <select
         id={id}
         className="input"

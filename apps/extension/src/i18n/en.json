@@ -61,10 +61,48 @@
     "tmdbRating": "{{rating}} on TMDB",
     "status": "Status",
     "remove": "Remove from library",
-    "cast": "Top cast"
+    "cast": "Top cast",
+    "statusOf": "Status of “{{title}}”"
   },
   "library": {
     "empty": "Your library is empty",
-    "emptyHint": "Use the search box above to add movies and TV shows."
+    "emptyHint": "Use the search box above to add movies and TV shows.",
+    "title": "Library",
+    "count": "{{count}} of {{total}}",
+    "searchInLibrary": "Search your library",
+    "view": "View",
+    "view_grid": "Grid",
+    "view_list": "List",
+    "noMatches": "No titles match the filters.",
+    "continueWatching": "Continue watching",
+    "resumeMovie": "Resume playback",
+    "hasLocal": "Local file available"
+  },
+  "filters": {
+    "title": "Filters",
+    "type": "Type",
+    "all": "All",
+    "status": "Status",
+    "platform": "Platform",
+    "myPlatforms": "My platforms",
+    "subscribed": "Subscribed",
+    "local": "Files",
+    "localOnly": "Available locally",
+    "list": "List",
+    "allLists": "All",
+    "genre": "Genre",
+    "clear": "Clear filters"
+  },
+  "sort": {
+    "label": "Sort by",
+    "addedAt": "Date added",
+    "title": "Title",
+    "year": "Year",
+    "rating": "Rating",
+    "ascending": "Ascending",
+    "descending": "Descending"
+  },
+  "episodes": {
+    "code": "S{{season}}E{{episode}}"
   }
 }
