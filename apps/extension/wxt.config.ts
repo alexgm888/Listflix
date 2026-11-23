@@ -11,6 +11,7 @@ function apiOrigin(): string {
 // https://wxt.dev/api/config.html
 export default defineConfig({
   modules: ['@wxt-dev/module-react'],
+  zip: { artifactTemplate: 'listflix-{{version}}-{{browser}}.zip' },
   manifest: () => ({
     name: '__MSG_extName__',
     description: '__MSG_extDescription__',

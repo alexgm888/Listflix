@@ -4,118 +4,107 @@ Extensión de Chrome que funciona como **biblioteca personal de películas y ser
 títulos, organízalos con estados y listas, mira en qué plataforma están disponibles y
 reprodúcelos desde tus propios archivos con subtítulos externos.
 
-- Datos del usuario **solo en local** (IndexedDB).
+- Datos del usuario **solo en local** (IndexedDB), con copia de seguridad en JSON.
 - Metadatos de [TMDB](https://www.themoviedb.org) a través de un proxy propio en Cloudflare
   Workers (`apps/worker`). El bundle de la extensión no contiene ninguna clave.
 - Interfaz en español e inglés.
 
-Especificación: [`docs/especificacion.md`](docs/especificacion.md) ·
-Decisiones: [`docs/decisiones.md`](docs/decisiones.md)
+Documentación:
+
+- [Especificación](docs/especificacion.md)
+- [Decisiones de implementación](docs/decisiones.md)
+- [Política de privacidad](docs/privacidad.md)
+- [Ficha de la Chrome Web Store](docs/tienda.md)
 
 ## Requisitos
 
 - Node.js 22+ y pnpm 10+
 - Chrome 122+ (File System Access API con permisos persistentes)
+- Para el proxy: una cuenta de Cloudflare y un API Read Access Token (v4) de TMDB
 
-## Puesta en marcha
+## Estructura
+
+```
+apps/extension   Extensión (WXT + React + TypeScript + Tailwind + Dexie + TanStack Query)
+apps/worker      Cloudflare Worker «listflix-api» (proxy de TMDB)
+packages/shared  Tipos de la API y cliente tipado del Worker
+docs/            Especificación, decisiones, privacidad y ficha de la tienda
+```
+
+## Desarrollo
 
 ```sh
 pnpm install
-cp apps/extension/.env.example apps/extension/.env   # URL del Worker
-pnpm dev                                             # abre Chrome con la extensión cargada
+
+# 1. Proxy en local (o usa la API simulada, ver más abajo)
+cp apps/worker/.dev.vars.example apps/worker/.dev.vars   # pon tu token de TMDB
+pnpm --filter @listflix/worker dev                       # http://localhost:8787
+
+# 2. Extensión
+cp apps/extension/.env.example apps/extension/.env       # WXT_API_BASE_URL
+pnpm dev                                                 # abre Chrome con la extensión cargada
 ```
 
 Para cargarla a mano: `pnpm build` y, en `chrome://extensions` (modo desarrollador), "Cargar
 descomprimida" con `apps/extension/.output/chrome-mv3`.
 
-## Estado por hitos
+**Sin token de TMDB:** `node apps/extension/e2e/mock-api.mjs` levanta una API simulada en
+`http://localhost:8788` con unos pocos títulos de ejemplo (compila con
+`WXT_API_BASE_URL=http://localhost:8788`).
 
-- **M0 – Base:** monorepo pnpm, WXT + React + TS + Tailwind, ESLint, Prettier, Vitest y CI. El
-  icono abre la biblioteca o enfoca la pestaña si ya está abierta.
-- **M1 – Worker:** proxy de TMDB en Cloudflare Workers con lista blanca de rutas y parámetros,
-  caché en el edge con clave normalizada, CORS, límite por IP y errores normalizados. Cliente
-  tipado en `packages/shared`.
-
-## Worker (proxy de TMDB)
+### Comprobaciones
 
 ```sh
-cd apps/worker
-cp .dev.vars.example .dev.vars        # pon tu API Read Access Token (v4) de TMDB
-pnpm dev                              # http://localhost:8787
-pnpm wrangler secret put TMDB_TOKEN   # producción
-pnpm deploy
+pnpm lint            # ESLint
+pnpm format:check    # Prettier
+pnpm typecheck       # tsc --noEmit en todos los paquetes
+pnpm test            # Vitest (extensión, Worker y shared)
+pnpm --filter @listflix/extension check:bundle   # el bundle no contiene claves de TMDB
 ```
 
-Después del primer despliegue, ajusta `ALLOWED_ORIGINS` en `wrangler.toml` con el ID de la
-extensión publicada y pon la URL del Worker en `WXT_API_BASE_URL` al compilar la extensión.
+Las pruebas E2E con Playwright (opcionales) están en [`apps/extension/e2e`](apps/extension/e2e).
 
-### Datos (M2)
+## Despliegue
 
-Esquema Dexie versionado (`apps/extension/src/db/db.ts`) y repositorios para biblioteca,
-episodios (con estado calculado de series), listas, archivos locales, progreso, caché de
-plataformas y ajustes.
+```sh
+# Worker
+cd apps/worker
+pnpm wrangler secret put TMDB_TOKEN
+pnpm deploy                     # anota la URL del Worker
 
-### Buscar y guardar (M3)
+# Extensión (zip para la Chrome Web Store)
+cd ../extension
+WXT_API_BASE_URL=https://<tu-worker>.workers.dev pnpm zip
+pnpm check:bundle
+```
 
-Búsqueda en TMDB (`search/multi`) con paginación, "Añadir" con estado inicial y ficha de detalle
-(póster, fondo, sinopsis, géneros, duración o temporadas, reparto y nota). Al añadir un título se
-completan sus metadatos en segundo plano. La interfaz está en español e inglés con i18next.
+Después de publicar, fija en `apps/worker/wrangler.toml` la variable `ALLOWED_ORIGINS` con
+`chrome-extension://<ID publicado>` (y el ID de desarrollo) y vuelve a desplegar el Worker.
+Antes de publicar, revisa la lista de [`docs/tienda.md`](docs/tienda.md). Dos tareas siguen
+pendientes:
 
-### Biblioteca (M4)
+- verificar las URLs de búsqueda de cada plataforma;
+- poner el logo oficial de TMDB.
 
-Cuadrícula o lista, filtros combinables (tipo, estado, género, plataforma, disponible en local y
-lista), búsqueda de texto sin tildes, orden por fecha de añadido, título, año o nota, y fila
-"Continuar viendo". Los filtros viven en la URL (`#/?type=tv&status=watching…`).
+## Estado por hitos
 
-`node apps/extension/e2e/mock-api.mjs` levanta una API simulada en `http://localhost:8788` para
-probar la extensión sin token de TMDB
-(`WXT_API_BASE_URL=http://localhost:8788 pnpm build`).
+| Hito                    | Contenido                                                                                                                                                                                                     |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| M0 – Base               | Monorepo pnpm, WXT + React + TS + Tailwind, ESLint, Prettier, Vitest y CI. El icono abre la biblioteca o enfoca la pestaña existente.                                                                         |
+| M1 – Worker             | Proxy con lista blanca de rutas y parámetros, caché en el edge con clave normalizada, CORS, límite por IP y errores normalizados. Cliente tipado en `packages/shared`.                                        |
+| M2 – Datos              | Esquema Dexie versionado y repositorios: biblioteca, episodios, listas, archivos locales, progreso, caché de plataformas y ajustes.                                                                           |
+| M3 – Buscar y guardar   | Búsqueda en TMDB con paginación, "Añadir" con estado inicial y ficha de detalle. Los metadatos se completan en segundo plano.                                                                                 |
+| M4 – Biblioteca         | Cuadrícula o lista, filtros combinables guardados en la URL, búsqueda sin tildes, orden y fila "Continuar viendo".                                                                                            |
+| M5 – Listas             | Crear, renombrar, borrar y reordenar listas. Orden propio dentro de cada lista y listas elegidas desde la ficha.                                                                                              |
+| M6 – Series             | Temporadas y episodios, marcar vistos (por episodio o temporada), "Continuar" y estado calculado (o fijado a mano).                                                                                           |
+| M7 – Dónde verlo        | `WatchLinkProvider` con URLs de búsqueda por plataforma (respaldo: página de TMDB), filtro por plataforma, plataformas contratadas y atribuciones.                                                            |
+| M8 – Medios locales     | Parser de nombres de archivo, emparejamiento con TMDB y reproductor con reanudación, marca de visto al 90 %, subtítulos SRT/VTT (detección de windows-1252, desfase de ±0,5 s y estilo) y siguiente episodio. |
+| M9 – Copia de seguridad | Exportar e importar en JSON (validado con zod), con fusión o reemplazo.                                                                                                                                       |
+| M10 – Pulido            | i18n completa (test de claves), accesibilidad (axe sin violaciones), foco y títulos por pantalla, y diseño móvil.                                                                                             |
+| M11 – Publicación       | Política de privacidad, textos de la tienda, justificación de permisos, comprobación del bundle, script de capturas y zip de producción.                                                                      |
 
-### Listas personales (M5)
+## Atribuciones
 
-Crear, renombrar, borrar y reordenar listas (`#/lists`). Cada lista tiene su orden propio
-(`#/lists/:id`). Un título puede estar en varias listas, que se eligen desde su ficha. La
-biblioteca filtra por lista.
-
-### Series (M6)
-
-Temporadas y episodios en la ficha, con marca de visto por episodio o por temporada completa,
-bloque "Continuar" con el siguiente episodio y estado global calculado (o fijado a mano, con
-opción de volver a "Automático").
-
-### Dónde verlo (M7)
-
-Plataformas de suscripción, gratis, con anuncios, alquiler y compra según el país configurado,
-con botón "Ver en …" que abre la búsqueda en esa plataforma (o la página de TMDB como respaldo).
-Filtro por plataforma en la biblioteca, plataformas contratadas en Ajustes y atribuciones a TMDB
-y JustWatch. **Las URLs de búsqueda están pendientes de verificar**: ver
-[`docs/decisiones.md`](docs/decisiones.md).
-
-### Medios locales (M8)
-
-Vincula vídeos de tu equipo (`#/link` o desde la ficha): Listflix analiza el nombre del archivo
-(título, año, `SxxEyy`), propone las 5 fichas que mejor coinciden y guarda el
-`FileSystemFileHandle` en IndexedDB. El reproductor propio (`player.html`):
-
-- reanuda desde la última posición;
-- marca como visto al pasar del 90 %;
-- carga subtítulos `.srt`/`.vtt` (con detección de windows-1252) y ajusta su desfase en pasos de
-  ±0,5 s;
-- ajusta el tamaño y el fondo de los subtítulos;
-- ofrece "Siguiente episodio".
-
-### Copia de seguridad (M9)
-
-En Ajustes, "Exportar biblioteca" descarga un JSON y "Importar copia…" lo valida con zod y
-permite **fusionar** (gana la versión más reciente) o **reemplazar**. Los archivos locales no se
-exportan: quedan pendientes de volver a vincular.
-
-### i18n, accesibilidad y pulido (M10)
-
-- Interfaz completa en español e inglés. Un test comprueba que las dos traducciones tienen las
-  mismas claves y que existen todas las que usa el código.
-- Título de pestaña por pantalla y foco al contenido al navegar.
-- Enlace "Saltar al contenido", foco visible y `alt`/`aria-label` en pósters y controles.
-- Contraste revisado con axe-core: 0 violaciones en todas las pantallas.
-- Diseño adaptado a móvil.
-- Pruebas E2E opcionales con Playwright en `apps/extension/e2e`.
+Este producto usa la API de TMDB, pero TMDB no lo respalda ni lo certifica. Los datos de
+disponibilidad los proporciona JustWatch. Los nombres y logotipos de las plataformas pertenecen
+a sus propietarios.

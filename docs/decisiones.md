@@ -155,3 +155,14 @@ Registro de decisiones que concretan o corrigen la especificación (`docs/especi
 - **Reemplazar:** borra todo y restaura la copia, ajustes incluidos.
 - **En los dos modos**, si un archivo local con el mismo ID, nombre y tamaño sigue vinculado en
   este navegador, se conserva su handle.
+
+## Publicación (M11)
+
+- **Permisos finales:** `unlimitedStorage` y el host del Worker. Sin `storage`, `tabs`, scripts
+  de contenido, `<all_urls>` ni acceso a `file://`. Las imágenes de `image.tmdb.org` se cargan
+  con `<img>` y no necesitan permisos.
+- **`pnpm check:bundle`** busca en el bundle compilado llamadas directas a `api.themoviedb.org`,
+  `api_key`, cabeceras Bearer, tokens con formato JWT y la variable `TMDB_TOKEN`.
+- **Capturas:** no se incluyen en el repositorio porque deben hacerse con datos reales (pósters).
+  `apps/extension/e2e/store-screenshots.cjs` las genera a 1280 × 800.
+- **Zip:** `listflix-<versión>-chrome.zip` (`wxt zip`).

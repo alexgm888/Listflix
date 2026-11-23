@@ -9,7 +9,8 @@
     "zip": "wxt zip",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "postinstall": "wxt prepare"
+    "postinstall": "wxt prepare",
+    "check:bundle": "node scripts/check-bundle.mjs"
   },
   "dependencies": {
     "@listflix/shared": "workspace:*",
