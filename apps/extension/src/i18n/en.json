@@ -103,7 +103,23 @@
     "descending": "Descending"
   },
   "episodes": {
-    "code": "S{{season}}E{{episode}}"
+    "code": "S{{season}}E{{episode}}",
+    "title": "Seasons and episodes",
+    "sync": "Refresh episodes",
+    "syncing": "Refreshing…",
+    "none": "No episodes yet. Press “Refresh episodes”.",
+    "continue": "Up next",
+    "markWatched": "Mark as watched",
+    "upToDate": "You're up to date: no aired episodes left to watch.",
+    "season": "Season {{number}}",
+    "progress": "{{watched}}/{{total}} watched",
+    "markSeasonWatched": "Mark season as watched",
+    "markSeasonUnwatched": "Unmark season",
+    "episode": "Episode {{number}}",
+    "upcoming": "Coming soon ({{date}})",
+    "addToTrack": "Add the show to your library to track episodes.",
+    "count_one": "{{count}} episode",
+    "count_other": "{{count}} episodes"
   },
   "lists": {
     "title": "Lists",

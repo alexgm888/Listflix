@@ -103,7 +103,23 @@
     "descending": "Descendente"
   },
   "episodes": {
-    "code": "T{{season}}E{{episode}}"
+    "code": "T{{season}}E{{episode}}",
+    "title": "Temporadas y episodios",
+    "sync": "Actualizar episodios",
+    "syncing": "Actualizando…",
+    "none": "Todavía no hay episodios. Pulsa «Actualizar episodios».",
+    "continue": "Continuar",
+    "markWatched": "Marcar como visto",
+    "upToDate": "Estás al día: no quedan episodios emitidos sin ver.",
+    "season": "Temporada {{number}}",
+    "progress": "{{watched}}/{{total}} vistos",
+    "markSeasonWatched": "Marcar temporada como vista",
+    "markSeasonUnwatched": "Desmarcar temporada",
+    "episode": "Episodio {{number}}",
+    "upcoming": "Próximamente ({{date}})",
+    "addToTrack": "Añade la serie a tu biblioteca para seguir los episodios.",
+    "count_one": "{{count}} episodio",
+    "count_other": "{{count}} episodios"
   },
   "lists": {
     "title": "Listas",

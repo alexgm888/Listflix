@@ -14,6 +14,7 @@ import { metadataProvider } from '../../lib/api';
 import { formatRating, formatRuntime } from '../../lib/format';
 import { tmdbImage } from '../../lib/images';
 import { ItemListsEditor } from '../lists/ItemListsEditor';
+import { EpisodesSection } from './EpisodesSection';
 import { needsEpisodeSync, refreshItem } from '../../sync/metadata-sync';
 
 export function TitlePage() {
@@ -135,6 +136,26 @@ export function TitlePage() {
           </div>
         </div>
       </header>
+
+      {item && item.mediaType === 'tv' && <EpisodesSection seriesKey={key} />}
+
+      {item === undefined && d.mediaType === 'tv' && d.seasons && d.seasons.length > 0 && (
+        <section aria-labelledby="seasons-title">
+          <h2 id="seasons-title" className="section-title">
+            {t('episodes.title')}
+          </h2>
+          <p className="mb-3 text-sm text-neutral-400">{t('episodes.addToTrack')}</p>
+          <ul className="flex flex-wrap gap-2">
+            {d.seasons
+              .filter((s) => s.seasonNumber > 0)
+              .map((s) => (
+                <li key={s.seasonNumber} className="chip">
+                  {s.name} · {t('episodes.count', { count: s.episodeCount })}
+                </li>
+              ))}
+          </ul>
+        </section>
+      )}
 
       {item && <ItemListsEditor itemKey={key} />}
 

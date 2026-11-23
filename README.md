@@ -76,3 +76,9 @@ probar la extensión sin token de TMDB
 Crear, renombrar, borrar y reordenar listas (`#/lists`). Cada lista tiene su orden propio
 (`#/lists/:id`). Un título puede estar en varias listas, que se eligen desde su ficha. La
 biblioteca filtra por lista.
+
+### Series (M6)
+
+Temporadas y episodios en la ficha, con marca de visto por episodio o por temporada completa,
+bloque "Continuar" con el siguiente episodio y estado global calculado (o fijado a mano, con
+opción de volver a "Automático").
